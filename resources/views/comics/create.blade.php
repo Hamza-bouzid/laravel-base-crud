@@ -7,7 +7,7 @@
 
     <h1>Create Comic</h1>
     <a href="{{route("comics.index")}}">
-    <button type="button" class="btn btn-primary">Vai a Comics</button>
+    <button type="button" class="btn btn-primary">Back To Comics</button>
     </a>
 
     <form action="{{route('comics.store')}}" method="POST">
