@@ -42830,6 +42830,9 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    forEach = _require.forEach;
+
 __webpack_require__(/*! @fortawesome/fontawesome */ "./node_modules/@fortawesome/fontawesome/index.es.js");
 
 __webpack_require__(/*! @fortawesome/fontawesome-free-solid */ "./node_modules/@fortawesome/fontawesome-free-solid/index.es.js");
@@ -42838,7 +42841,29 @@ __webpack_require__(/*! @fortawesome/fontawesome-free-regular */ "./node_modules
 
 __webpack_require__(/*! @fortawesome/fontawesome-free-brands */ "./node_modules/@fortawesome/fontawesome-free-brands/index.es.js");
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // tramite javascript, quando l’utente clicca sul pulsante “delete”, chiedere conferma della cancellazione, prima di eliminare l’elemento.
+
+
+var elimina = document.querySelectorAll(".elimina");
+
+for (var i = 0; i < elimina.length; i++) {
+  elimina[i].addEventListener("click", deleteComic);
+}
+
+function deleteComic() {
+  var _this = this;
+
+  if (confirm("Are you sure you want to delete this comic")) {
+    // Save it!
+    console.log("Comic deleted");
+  } else {
+    // Do nothing!
+    this.disabled = true;
+    setTimeout(function () {
+      _this.disabled = false;
+    }, 100);
+  }
+}
 
 /***/ }),
 
