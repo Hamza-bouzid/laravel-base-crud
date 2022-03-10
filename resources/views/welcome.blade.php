@@ -9,5 +9,6 @@
     <a href="{{route("comics.index")}}">
     <button type="button" class="btn btn-primary">Vai a Comics</button>
     </a>
+    
 
 @endsection
