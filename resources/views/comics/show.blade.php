@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="col-6">
-      <h1>{{$comic->title}}</h1>
+      <h1 class="title">{{$comic->title}}</h1>
       <p>{{$comic->description}}</p>
       <div class="d-flex justify-content-around border-none">
         <a href="{{route("comics.index")}}"><button type="button" class="btn btn-primary">Back To Comics</button></a>

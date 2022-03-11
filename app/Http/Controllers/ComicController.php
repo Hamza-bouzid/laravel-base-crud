@@ -39,16 +39,17 @@ class ComicController extends Controller
     {
         $data = $request->all();
 
-        $newComic = new Comic();
-        $newComic->title = $data["title"];
-        $newComic->type = $data["type"];
-        $newComic->series = $data["series"];
-        $newComic->description = $data["description"];
-        $newComic->image = $data["image"];
-        $newComic->price = $data["price"];
-        $newComic->sale_date = $data["sale_date"];
+        // $newComic = new Comic();
+        // $newComic->title = $data["title"];
+        // $newComic->type = $data["type"];
+        // $newComic->series = $data["series"];
+        // $newComic->description = $data["description"];
+        // $newComic->image = $data["image"];
+        // $newComic->price = $data["price"];
+        // $newComic->sale_date = $data["sale_date"];
 
-        $newComic->save();
+        // $newComic->save();
+        $newComic = Comic::create($data);
 
         return redirect()->route('comics.show', $newComic->id);
 
@@ -86,16 +87,17 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $data = $request->all();
-        $comic->title = $data["title"];
-        $comic->type = $data["type"];
-        $comic->series = $data["series"];
-        $comic->description = $data["description"];
-        $comic->image = $data["image"];
-        $comic->price = $data["price"];
-        $comic->sale_date = $data["sale_date"];
+         $data = $request->all();
+        // $comic->title = $data["title"];
+        // $comic->type = $data["type"];
+        // $comic->series = $data["series"];
+        // $comic->description = $data["description"];
+        // $comic->image = $data["image"];
+        // $comic->price = $data["price"];
+        // $comic->sale_date = $data["sale_date"];
 
-        $comic->save();
+        // $comic->save();
+        $comic->update($data);
 
         return redirect()->route('comics.show', $comic->id);
     }

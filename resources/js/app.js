@@ -9,11 +9,10 @@ require("./bootstrap");
 
 // tramite javascript, quando l’utente clicca sul pulsante “delete”, chiedere conferma della cancellazione, prima di eliminare l’elemento.
 
-const elimina = document.querySelectorAll(".elimina");
+const elimina = document.querySelector(".elimina");
 
-for (let i = 0; i < elimina.length; i++) {
-    elimina[i].addEventListener("click", deleteComic);
-}
+
+elimina.addEventListener("click", deleteComic);
 
 function deleteComic() {
     if (confirm("Are you sure you want to delete this comic")) {
