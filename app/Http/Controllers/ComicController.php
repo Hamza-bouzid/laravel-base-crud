@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Comic;
 
@@ -37,8 +38,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
 
+        $request->validate([
+            "title"=>"required|string|max:50|unique:comics",
+            "type"=>[
+                "required",
+                Rule::in(['comic book','graphic novel'])
+            ],
+            "series"=>"required|string|max:50",
+            "description"=>"required|string",
+            "image"=>"required|url",
+            "price"=>"required|numeric|between:0,999.99",
+            "sale_date"=>"required|date"
+        ]);
+
+        $data = $request->all();
+///primo modo
         // $newComic = new Comic();
         // $newComic->title = $data["title"];
         // $newComic->type = $data["type"];
@@ -47,8 +62,14 @@ class ComicController extends Controller
         // $newComic->image = $data["image"];
         // $newComic->price = $data["price"];
         // $newComic->sale_date = $data["sale_date"];
-
         // $newComic->save();
+
+        ////secondo modo
+        // $newComic = new Comic();
+        //$newComic->fill($data);
+        // $newComic->save();
+
+        ////Terzo modo
         $newComic = Comic::create($data);
 
         return redirect()->route('comics.show', $newComic->id);
@@ -87,6 +108,20 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+
+        $request->validate([
+            "title"=>"required|string|max:50|unique:comics,title,{$comic->id}",
+            "type"=>[
+                "required",
+                Rule::in(['comic book','graphic novel'])
+            ],
+            "series"=>"required|string|max:50",
+            "description"=>"required|string",
+            "image"=>"required|url",
+            "price"=>"required|numeric|between:0,999.99",
+            "sale_date"=>"required|date"
+        ]);
+
          $data = $request->all();
         // $comic->title = $data["title"];
         // $comic->type = $data["type"];
